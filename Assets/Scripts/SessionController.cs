@@ -9,10 +9,12 @@ public class SessionController : Singleton<SessionController> {
 	public AudioClip click;
 
 	public int currentLevel = 1;
-
+	public bool firstGame = true;
 
 	// Use this for initialization
 	void Awake () {
+
+	
 		DontDestroyOnLoad(transform.gameObject);
 
 		if (FindObjectsOfType (GetType()).Length > 1) {

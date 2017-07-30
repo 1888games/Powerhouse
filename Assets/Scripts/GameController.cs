@@ -13,6 +13,7 @@ public class GameController : Singleton<GameController> {
 	public GameObject house;
 	public GameObject road;
 	GameObject gameOverPanel;
+	GameObject introPanel;
 	public Tile[,] tiles;
 	public Dictionary<Tile, GameObject> tileGameObjectMap;
 	public int size;
@@ -45,6 +46,8 @@ public class GameController : Singleton<GameController> {
 
 		gameOverPanel = GameObject.FindGameObjectWithTag ("GameOver");
 		gameOverPanel.SetActive (false);
+
+		introPanel = GameObject.FindGameObjectWithTag ("Intro");
 
 		score = PlayerPrefs.GetInt ("Score");
 		highScore = PlayerPrefs.GetInt ("HighScore");
@@ -115,6 +118,12 @@ public class GameController : Singleton<GameController> {
 		drawRoads ();
 		createSourceNode ();
 
+		if (PlayerPrefs.HasKey("FirstGame") == false) {
+			paused = true;
+		}
+		else {
+			introPanel.SetActive (false);
+		}
 
 
 
@@ -155,7 +164,7 @@ public class GameController : Singleton<GameController> {
 	}
 
 	public void startClock () {
-		InvokeRepeating ("updateTime", 1f, 1f);
+		InvokeRepeating ("updateTime", 2f, 1f);
 	}
 
 	void flashLights () {
@@ -209,6 +218,16 @@ public class GameController : Singleton<GameController> {
 			source.PlayOneShot (click);
 			PlayerPrefs.DeleteKey ("Level");
 			SessionController.Instance.restartScene ();
+
+		}
+
+		if (paused && SessionController.Instance.firstGame && Input.GetMouseButton(0)) {
+
+			PlayerPrefs.SetInt ("FirstGame", 0);
+			SessionController.Instance.firstGame = false;
+			paused = false;
+			introPanel.SetActive (false);
+
 
 		}
 

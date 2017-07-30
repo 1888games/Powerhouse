@@ -83,6 +83,7 @@ public class MouseController : MonoBehaviour {
 
 		GameController.Instance.source.PlayOneShot (GameController.Instance.click);
 		Application.Quit ();
+		PlayerPrefs.DeleteKey ("FirstGame");
 
 
 	}
