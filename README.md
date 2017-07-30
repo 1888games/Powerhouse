@@ -7,5 +7,5 @@ WEB GL: www.1888games.co.uk/Powerhouse/index.html
 
 Windows: http://www.1888games.co.uk/Powerhouse_win32.zip
 
-OSX:http://www.1888games.co.uk/Powerhouse_OXS.zip
+OSX:http://www.1888games.co.uk/Powerhouse_OSX.zip
 
